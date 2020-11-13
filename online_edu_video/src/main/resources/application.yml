@@ -1,0 +1,23 @@
+server:
+  port: 8002
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  application:
+    name: EDU-VIDEO
+oss:
+  accessKeyId: LTAI4GKMdajb7mgkkDmqNdE6
+  accessKeySecret: PNwSie8Chtq2ZaX4b5a9b3JXFDQS06
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8888/eureka/
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 60000
+        read-timeout: 60000
