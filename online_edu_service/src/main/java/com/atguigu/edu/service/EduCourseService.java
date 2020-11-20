@@ -3,9 +3,12 @@ package com.atguigu.edu.service;
 import com.atguigu.edu.entity.EduCourse;
 import com.atguigu.request.CourseCondition;
 import com.atguigu.request.CourseInfoVO;
+import com.atguigu.response.CourseDetailInfo;
 import com.atguigu.response.EduCourseConfirmVo;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -55,4 +58,18 @@ public interface EduCourseService extends IService<EduCourse> {
      * @param courseId
      */
     void deleteCourseByCourseId(String courseId);
+
+    /**
+     * 根据讲师id查询课程信息
+     * @param teacherId
+     * @return
+     */
+    List<EduCourse> queryCourseById(String teacherId);
+
+    /**
+     * 根据id查询课程详情
+     * @param courseId
+     * @return
+     */
+    CourseDetailInfo queryCourseDetailById(String courseId);
 }

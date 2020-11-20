@@ -4,6 +4,7 @@ import com.atguigu.response.RetVal;
 import com.atguigu.videoService.VideoService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.RetryLoadBalancerInterceptor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -56,6 +57,17 @@ public class VideoController {
         String videoId = StringUtils.join(videoIdList,",");
         videoService.deleteAliyunVideo(videoId);
         return RetVal.success();
+    }
+
+    /**
+     * 获取视频播放凭证
+     * @param videoId
+     * @return
+     */
+    @GetMapping("getVideoPlayAuth/{videoId}")
+    public RetVal getVideoPlayAuth(@PathVariable("videoId") String videoId){
+        String playAuth = videoService.getVideoPlayAuth(videoId);
+        return RetVal.success().data("playAuth",playAuth);
     }
 
 

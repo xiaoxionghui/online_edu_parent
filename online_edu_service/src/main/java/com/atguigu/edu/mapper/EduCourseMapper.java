@@ -1,6 +1,7 @@
 package com.atguigu.edu.mapper;
 
 import com.atguigu.edu.entity.EduCourse;
+import com.atguigu.response.CourseDetailInfo;
 import com.atguigu.response.EduCourseConfirmVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -15,4 +16,11 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface EduCourseMapper extends BaseMapper<EduCourse> {
 
     EduCourseConfirmVo getCourseConfirmInfo(String courseId);
+
+    /**
+     * 查询课程详情
+     * @param courseId
+     * @return
+     */
+    CourseDetailInfo queryCourseDetailById(String courseId);
 }

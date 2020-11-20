@@ -1,6 +1,14 @@
 spring:
   application:
     name: EDU-SERVICE
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  redis:
+    host: 47.115.30.202
+    port: 6380
+
   datasource:
     username: root
     password: root
@@ -9,13 +17,7 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8888/eureka/
-  instance:
-    appname: EDU-SERVICE
-    prefer-ip-address: true
+
 server:
   port: 8000
 swagger2:

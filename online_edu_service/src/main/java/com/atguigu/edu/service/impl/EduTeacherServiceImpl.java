@@ -11,6 +11,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.sql.Wrapper;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -45,6 +48,32 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
         wrapper.orderByDesc("gmt_create");
         baseMapper.selectPage(teacherPage, wrapper);
 
+    }
+
+    /**
+     * 后台分页查询讲师
+     * @param teacherPage
+     * @return
+     */
+    @Override
+    public Map<String, Object> queryTeacherPage(Page<EduTeacher> teacherPage) {
+        baseMapper.selectPage(teacherPage,null);
+        List<EduTeacher> teacherList = teacherPage.getRecords();
+        long total = teacherPage.getTotal();
+        long size = teacherPage.getSize();
+        long current = teacherPage.getCurrent();
+        boolean hasNext = teacherPage.hasNext();
+        boolean hasPrevious = teacherPage.hasPrevious();
+        long pages = teacherPage.getPages();
+        Map<String, Object> map = new HashMap<>();
+        map.put("total",total);
+        map.put("size",size);
+        map.put("currentPage",current);
+        map.put("hasNext",hasNext);
+        map.put("hasPrevious",hasPrevious);
+        map.put("teacherList",teacherList);
+        map.put("pages",pages);
+        return map;
     }
 
 }

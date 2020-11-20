@@ -16,4 +16,6 @@ public class SectionVo {
     private String id;
     @ApiModelProperty(value = "节点名称")
     private String title;
+    @ApiModelProperty(value = "视频资源")
+    private String videoSourceId;
 }

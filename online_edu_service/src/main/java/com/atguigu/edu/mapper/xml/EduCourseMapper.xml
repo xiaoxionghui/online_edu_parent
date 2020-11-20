@@ -19,4 +19,31 @@
             LEFT JOIN edu_subject d ON a.child_subject_id = d.id
         WHERE a.id=#{courseId}
     </select>
+    <select id="queryCourseDetailById" resultType="com.atguigu.response.CourseDetailInfo">
+        SELECT
+		a.title,
+		a.price,
+		a.lesson_num,
+		a.cover,
+		a.buy_count AS buyCount,
+		a.view_count AS viewCount,
+		b.description,
+		c.id AS teacherId,
+		c.NAME AS teacherName,
+		c.intro,
+		c.avatar,
+		d.id AS parentSubjectId,
+		d.title AS parentSubject,
+		e.id AS childSubjectId,
+		e.title AS childSubject
+	FROM
+		edu_course a
+		LEFT JOIN edu_course_description b ON a.id = b.id
+		LEFT JOIN edu_teacher c ON a.teacher_id = c.id
+		LEFT JOIN edu_subject d ON a.parent_subject_id = d.id
+		LEFT JOIN edu_subject e ON a.child_subject_id = e.id
+	WHERE
+		a.id = #{courseId}
+
+    </select>
 </mapper>

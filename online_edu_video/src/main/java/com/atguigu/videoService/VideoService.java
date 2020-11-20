@@ -17,4 +17,11 @@ public interface VideoService {
      * @param videoId
      */
     void deleteAliyunVideo(String videoId);
+
+    /**
+     * 获取视频播放凭证
+     * @param videoId
+     * @return
+     */
+    String getVideoPlayAuth(String videoId);
 }

@@ -9,6 +9,7 @@ import com.atguigu.edu.service.EduCourseService;
 import com.atguigu.edu.service.EduSectionService;
 import com.atguigu.request.CourseCondition;
 import com.atguigu.request.CourseInfoVO;
+import com.atguigu.response.CourseDetailInfo;
 import com.atguigu.response.EduCourseConfirmVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -18,6 +19,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * <p>
@@ -132,5 +135,17 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         baseMapper.deleteById(courseId);
         //删除课程对应的描述信息
         descriptionService.removeById(courseId);
+    }
+
+    @Override
+    public List<EduCourse> queryCourseById(String teacherId) {
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        wrapper.eq("teacher_id",teacherId);
+        return baseMapper.selectList(wrapper);
+    }
+
+    @Override
+    public CourseDetailInfo queryCourseDetailById(String courseId) {
+        return baseMapper.queryCourseDetailById(courseId);
     }
 }

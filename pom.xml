@@ -8,6 +8,9 @@
         <module>online_edu_oss</module>
         <module>online_edu_video</module>
         <module>online_edu_register</module>
+        <module>online_edu_user</module>
+        <module>online_edu_statistics</module>
+        <module>online_edu_order</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

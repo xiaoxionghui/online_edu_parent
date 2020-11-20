@@ -8,6 +8,8 @@ import com.aliyun.vod.upload.resp.UploadVideoResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import com.atguigu.utils.VideoUtils;
 import com.atguigu.videoService.VideoService;
 import org.springframework.beans.factory.annotation.Value;
@@ -71,5 +73,26 @@ public class VideoServiceImpl implements VideoService {
         } catch (ClientException e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * 获取播放凭证
+     * @param videoId
+     * @return
+     */
+    @Override
+    public String getVideoPlayAuth(String videoId) {
+        GetVideoPlayAuthResponse response = null;
+        try {
+            DefaultAcsClient defaultAcsClient = VideoUtils.initVodClient(accessKeyId, accessKeySecret);
+            response = new GetVideoPlayAuthResponse();
+            GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+            request.setVideoId(videoId);
+            response = defaultAcsClient.getAcsResponse(request);
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+
+        return response.getPlayAuth();
     }
 }
